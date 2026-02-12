@@ -1,0 +1,145 @@
+import { useRef, useState } from "react";
+import { motion, useAnimationFrame, useScroll, useSpring, useTransform, useVelocity } from "framer-motion";
+import { featureHighlightContent as defaultContent } from "../content/featureHighlightContent";
+
+function VelocityText({ children, className }) {
+  const { scrollY } = useScroll();
+  const scrollVelocity = useVelocity(scrollY);
+  const smoothVelocity = useSpring(scrollVelocity, { damping: 50, stiffness: 400 });
+  const skewX = useTransform(smoothVelocity, [-1000, 1000], [-5, 5]);
+
+  return (
+    <motion.div style={{ skewX }} className={className}>
+      {children}
+    </motion.div>
+  );
+}
+
+export default function FeatureHighlight({ content = defaultContent }) {
+  const containerRef = useRef(null);
+  const [activeFeature, setActiveFeature] = useState(0);
+  const { features, featureLabelPrefix, processingLabel } = content;
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
+
+  useAnimationFrame(() => {
+    if (!features.length) return;
+    const progress = scrollYProgress.get();
+    const rawIndex = Math.floor(progress * features.length);
+    const nextIndex = Math.min(features.length - 1, Math.max(0, rawIndex));
+
+    setActiveFeature((currentIndex) => (currentIndex === nextIndex ? currentIndex : nextIndex));
+  });
+
+  if (!features.length) {
+    return null;
+  }
+
+  return (
+    <section className="bg-zinc-950 relative">
+      <div ref={containerRef} className="relative" style={{ height: `${features.length * 100}vh` }}>
+        <div className="container mx-auto px-6 h-full flex items-start">
+          {/* LEFT: Scrolling Content */}
+          <div className="w-full lg:w-1/2 py-[50vh] flex flex-col justify-between gap-[50vh]">
+            {features.map((feature, index) => {
+              const Icon = feature.icon;
+
+              return (
+                <div key={feature.id} className="h-[50vh] flex flex-col justify-center">
+                  <VelocityText className="group">
+                    <div className="inline-flex items-center gap-3 mb-6 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md w-fit">
+                      <Icon className="w-5 h-5 text-indigo-400" />
+                      <span className="text-sm font-mono text-indigo-200 uppercase tracking-widest">
+                        {featureLabelPrefix} 0{index + 1}
+                      </span>
+                    </div>
+
+                    <h2 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">{feature.title}</h2>
+                    <h3 className="text-2xl text-zinc-500 font-medium mb-6">{feature.subtitle}</h3>
+                    <p className="text-xl text-zinc-400 leading-relaxed max-w-lg">{feature.description}</p>
+
+                    <div className="mt-12 flex items-center gap-4">
+                      <div className="h-px w-12 bg-zinc-700" />
+                      <div className="text-3xl font-bold text-white font-mono">{feature.stat}</div>
+                      <div className="text-xs text-zinc-500 uppercase tracking-wider">{feature.statLabel}</div>
+                    </div>
+                  </VelocityText>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* RIGHT: Sticky Visuals */}
+          <div className="hidden lg:block w-1/2 sticky top-0 h-screen flex items-center justify-center p-12">
+            <div className="relative w-full h-[600px] rounded-3xl overflow-hidden border border-white/10 bg-zinc-900/50 backdrop-blur-xl shadow-2xl">
+              {/* Dynamic Backgrounds */}
+              {features.map((feature, index) => (
+                <motion.div
+                  key={feature.id}
+                  initial={{ opacity: 0 }}
+                  animate={{
+                    opacity: activeFeature === index ? 1 : 0,
+                    scale: activeFeature === index ? 1 : 1.1,
+                  }}
+                  transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                  className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-20`}
+                />
+              ))}
+
+              {/* Internal UI Mockup (Abstract) */}
+              <div className="absolute inset-4 border border-white/5 rounded-2xl overflow-hidden">
+                <div className="absolute top-0 left-0 right-0 h-12 border-b border-white/5 bg-white/5 flex items-center px-4 gap-2">
+                  <div className="w-3 h-3 rounded-full bg-red-500/50" />
+                  <div className="w-3 h-3 rounded-full bg-yellow-500/50" />
+                  <div className="w-3 h-3 rounded-full bg-green-500/50" />
+                </div>
+
+                {/* Content Swap based on Active Feature */}
+                <div className="mt-12 p-8 h-full relative">
+                  {features.map((feature, index) => {
+                    const Icon = feature.icon;
+
+                    return (
+                      <motion.div
+                        key={feature.id}
+                        initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+                        animate={{
+                          opacity: activeFeature === index ? 1 : 0,
+                          y: activeFeature === index ? 0 : 20,
+                          filter: activeFeature === index ? "blur(0px)" : "blur(10px)",
+                        }}
+                        transition={{ duration: 0.6, delay: 0.1 }}
+                        className="absolute inset-0 p-8 flex flex-col items-center justify-center"
+                      >
+                        {/* Abstract Visual Representation */}
+                        <div className="relative">
+                          <div className={`w-48 h-48 rounded-full bg-gradient-to-tr ${feature.gradient} blur-[60px] animate-pulse`} />
+                          <Icon className="w-32 h-32 text-white relative z-10 drop-shadow-2xl" strokeWidth={1} />
+                        </div>
+                        <div className="mt-12 w-full max-w-sm h-2 bg-zinc-800 rounded-full overflow-hidden">
+                          <motion.div
+                            initial={{ width: 0 }}
+                            animate={{ width: activeFeature === index ? "100%" : "0%" }}
+                            transition={{ duration: 1.5, ease: "circOut" }}
+                            className="h-full bg-white"
+                          />
+                        </div>
+                        <div className="mt-4 font-mono text-xs text-zinc-500">{processingLabel}</div>
+                      </motion.div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Glass Reflection Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent pointer-events-none" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

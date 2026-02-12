@@ -1,0 +1,52 @@
+export const pricingContent = {
+  sectionId: "pricing",
+  heading: "Simple pricing for every growth stage",
+  description: "Choose the plan that fits your team today and scale as your business expands.",
+  billing: {
+    monthlyLabel: "Monthly",
+    yearlyLabel: "Annual",
+    monthlySuffix: "/mo",
+    yearlySaveLabel: "Save more",
+    yearlyDiscount: 0.15,
+  },
+  popularBadgeLabel: "Recommended",
+  plans: [
+    {
+      name: "Starter",
+      monthlyPrice: null,
+      customPriceLabel: "Custom",
+      description: "For small teams getting started with automation.",
+      features: ["Easy integration setup", "Secure cloud backup", "Basic workflow automation", "Email support"],
+      ctaLabel: "Request Quote",
+      popular: false,
+    },
+    {
+      name: "Growth",
+      monthlyPrice: null,
+      customPriceLabel: "Custom",
+      description: "For growing teams that need speed and control.",
+      features: [
+        "Advanced automation workflows",
+        "Multi-team user management",
+        "Priority support",
+        "Smart process optimization",
+      ],
+      ctaLabel: "Book Consultation",
+      popular: true,
+    },
+    {
+      name: "Enterprise",
+      monthlyPrice: null,
+      customPriceLabel: "Custom",
+      description: "For large organizations with custom process needs.",
+      features: [
+        "Custom integrations",
+        "Dedicated account manager",
+        "24/7 realtime support",
+        "Enterprise-grade security controls",
+      ],
+      ctaLabel: "Contact Sales",
+      popular: false,
+    },
+  ],
+};
