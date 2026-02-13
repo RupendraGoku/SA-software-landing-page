@@ -114,7 +114,7 @@ export default function Hero({ content = defaultContent }) {
                 <div className="p-4 rounded-xl bg-white/60 border border-[var(--line)]">
                   <div className="text-xs text-[var(--ink-700)] mb-2">Revenue</div>
                   <div className="text-2xl font-semibold text-[var(--ink-900)]">
-                    $48,230
+                    88,230
                   </div>
                   <div className="h-1 mt-3 bg-indigo-500 rounded-full w-3/4" />
                 </div>
@@ -122,7 +122,7 @@ export default function Hero({ content = defaultContent }) {
                 <div className="p-4 rounded-xl bg-white/60 border border-[var(--line)]">
                   <div className="text-xs text-[var(--ink-700)] mb-2">Users</div>
                   <div className="text-2xl font-semibold text-[var(--ink-900)]">
-                    12,845
+                    1,845
                   </div>
                   <div className="h-1 mt-3 bg-purple-500 rounded-full w-2/3" />
                 </div>
@@ -130,7 +130,7 @@ export default function Hero({ content = defaultContent }) {
                 <div className="p-4 rounded-xl bg-white/60 border border-[var(--line)]">
                   <div className="text-xs text-[var(--ink-700)] mb-2">Conversion</div>
                   <div className="text-2xl font-semibold text-[var(--ink-900)]">
-                    4.8%
+                    14.8%
                   </div>
                   <div className="h-1 mt-3 bg-green-500 rounded-full w-1/2" />
                 </div>
