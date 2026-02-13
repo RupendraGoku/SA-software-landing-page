@@ -39,19 +39,19 @@ export default function Header({ content = defaultContent }) {
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent"
       >
         {/* ✅ CHANGED TO GRID LAYOUT */}
-        <div className="container mx-auto px-2 h-20 grid grid-cols-3 items-center">
+        <div className="container mx-auto px-3 h-20 flex items-center md:grid md:grid-cols-3">
           
           {/* Logo - Left */}
-          <div className="flex items-center gap-2 cursor-pointer z-50 justify-self-start">
+          <div className="flex items-center gap-2 cursor-pointer z-50 min-w-0 flex-1 md:flex-none md:justify-self-start">
             <img
               src="/asset/sa_logo.png"
               alt="SA Softech Logo"
-              className="w-16 h-16 object-contain bg-white rounded-full"
+              className="w-11 h-11 sm:w-12 sm:h-12 md:w-16 md:h-16 object-contain bg-white rounded-full"
             />
 
-            <span className="text-2xl font-extrabold tracking-wide bg-[linear-gradient(to_right,#2A3B99_0%,#2A3B99_25%,#DD291A_75%,#DD291A_100%)] bg-clip-text text-transparent">
-  {brand.name}
-              <span className="text-indigo-400">{brand.accent}</span>
+            <span className="min-w-0 max-w-[11.5rem] sm:max-w-[14rem] md:max-w-none truncate whitespace-nowrap text-base sm:text-lg md:text-2xl font-extrabold tracking-normal md:tracking-wide bg-[linear-gradient(to_right,#2A3B99_0%,#2A3B99_25%,#DD291A_75%,#DD291A_100%)] bg-clip-text text-transparent">
+              {brand.name}
+              {/* <span className="text-indigo-400">{brand.accent}</span> */}
             </span>
           </div>
 

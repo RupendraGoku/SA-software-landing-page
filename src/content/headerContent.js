@@ -1,7 +1,7 @@
 export const headerContent = {
   brand: {
     name: "SA Softech India",
-    accent: ".",
+    // accent: ".",
   },
   navLinks: [
     { name: "Platform", href: "#platform" },

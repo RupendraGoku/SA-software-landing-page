@@ -36,6 +36,8 @@ import { experienceContent } from './content/experienceContent';
 import { reviewsContent } from './content/reviewsContent';
 import { techStackContent } from './content/techStackContent';
 import { techTeamContent } from './content/techTeamContent';
+import FeaturedProjects from './components/FeaturedProjects';
+// import { featuredProjectsContent } from './content/featuredProjectsContent';
 
 // Optional: Import Smooth Scroll wrapper (e.g. Lenis) here for true Awwwards feel
 
@@ -54,11 +56,12 @@ export default function App() {
         <HowItWorks content={howItWorksContent} />
         <UseCases content={useCasesContent} />
         <Metrics content={metricsContent} />
-        <Testimonials content={testimonialsContent} />
         {/* <Pricing content={pricingContent} /> */}
         <Security content={securityContent} />
-        <Support content={supportContent} />
+        {/* <FeaturedProjects content={featuredProjectsContent} /> */}
+        <Testimonials content={testimonialsContent} />
         <Reviews content={reviewsContent} />
+        <Support content={supportContent} />
         <FinalCTA content={finalCtaContent} />
         <TechTeam content={techTeamContent} />
       </main>
