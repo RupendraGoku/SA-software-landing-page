@@ -13,7 +13,7 @@ export default function Header({ content = defaultContent }) {
     [0, 100],
     ["rgba(250,245,236,0)", "rgba(250,245,236,0.82)"]
   );
-  
+
   const backdropBlur = useTransform(
     scrollY,
     [0, 100],
@@ -25,35 +25,38 @@ export default function Header({ content = defaultContent }) {
     [0, 100],
     ["rgba(110, 88, 62, 0)", "rgba(110, 88, 62, 0.28)"]
   );
+
   const { brand, navLinks, loginLabel, primaryCtaLabel, mobilePrimaryCtaLabel } = content;
 
   return (
     <>
       <motion.header
-        style={{ backgroundColor, backdropFilter: backdropBlur, borderBottomColor: borderColor }}
+        style={{
+          backgroundColor,
+          backdropFilter: backdropBlur,
+          borderBottomColor: borderColor,
+        }}
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent"
       >
-        <div className="container mx-auto px-2 h-20 flex items-center justify-between">
+        {/* ✅ CHANGED TO GRID LAYOUT */}
+        <div className="container mx-auto px-2 h-20 grid grid-cols-3 items-center">
           
-          {/* Logo */}
-          <div className="flex items-center gap-2 cursor-pointer z-50 ">
-  
-  <img
-    src="/asset/sa_logo.png"
-    alt="SA Softech Logo"
-    className="w-16 h-16 object-contain bg-white rounded-full"
-  />
+          {/* Logo - Left */}
+          <div className="flex items-center gap-2 cursor-pointer z-50 justify-self-start">
+            <img
+              src="/asset/sa_logo.png"
+              alt="SA Softech Logo"
+              className="w-16 h-16 object-contain bg-white rounded-full"
+            />
 
-  <span className="text-xl font-bold tracking-tight text-[var(--ink-900)]">
-    {brand.name}
-    <span className="text-indigo-400">{brand.accent}</span>
-  </span>
+            <span className="text-2xl font-extrabold tracking-wide bg-[linear-gradient(to_right,#2A3B99_0%,#2A3B99_25%,#DD291A_75%,#DD291A_100%)] bg-clip-text text-transparent">
+  {brand.name}
+              <span className="text-indigo-400">{brand.accent}</span>
+            </span>
+          </div>
 
-</div>
-
-
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-1 bg-white/60 px-2 py-1.5 rounded-full border border-[var(--line)] backdrop-blur-md">
+          {/* Desktop Nav - Center */}
+          <nav className="hidden md:flex items-center gap-1 bg-white/60 px-2 py-1.5 rounded-full border border-[var(--line)] backdrop-blur-md justify-self-center">
             {navLinks.map((link) => (
               <a
                 key={link.name}
@@ -61,6 +64,7 @@ export default function Header({ content = defaultContent }) {
                 className="relative px-4 py-2 text-sm font-medium text-[var(--ink-700)] hover:text-indigo-700 transition-colors rounded-full group hover:bg-indigo-100"
               >
                 <span className="relative z-10">{link.name}</span>
+
                 {/* Hover Effect Pill */}
                 <motion.div
                   className="absolute inset-0 bg-white/70 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
@@ -71,20 +75,9 @@ export default function Header({ content = defaultContent }) {
             ))}
           </nav>
 
-          {/* CTA & Mobile Toggle */}
-          <div className="flex items-center gap-4">
-            {/* <button className="hidden md:flex text-sm font-medium text-[var(--ink-700)] hover:text-[var(--ink-900)] transition-colors hover:cursor-pointer">{loginLabel}</button>
-            <button className="hidden md:flex items-center gap-2 px-5 py-2.5 bg-white text-black text-sm font-semibold rounded-full hover:bg-zinc-200 transition-colors group">
-              {primaryCtaLabel}
-              <ChevronRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
-            </button>
-            
-            <button 
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)} 
-              className="md:hidden p-2 text-[var(--ink-700)] hover:text-[var(--ink-900)]"
-            >
-              {mobileMenuOpen ? <X /> : <Menu />}
-            </button> */}
+          {/* Empty Right Column (reserved for future CTA/buttons) */}
+          <div className="justify-self-end hidden md:block">
+            {/* You can place CTA buttons here later */}
           </div>
         </div>
       </motion.header>
@@ -100,7 +93,12 @@ export default function Header({ content = defaultContent }) {
           >
             <div className="flex flex-col gap-6 text-2xl font-medium text-[var(--ink-700)]">
               {navLinks.map((link) => (
-                <a key={link.name} href={link.href} className="hover:text-[var(--ink-900)] hover:pl-4 transition-all" onClick={() => setMobileMenuOpen(false)}>
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="hover:text-[var(--ink-900)] hover:pl-4 transition-all"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
                   {link.name}
                 </a>
               ))}
