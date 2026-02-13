@@ -11,7 +11,7 @@ export default function HowItWorks({ content = defaultContent }) {
 
   return (
     <section ref={ref} className="py-32 relative container mx-auto px-6">
-      <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-1 bg-zinc-900 -translate-x-1/2">
+      <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-1 bg-[var(--porcelain-200)] -translate-x-1/2">
         <motion.div style={{ scaleY: scrollYProgress }} className="w-full bg-gradient-to-b from-indigo-500 to-cyan-500 origin-top h-full" />
       </div>
 
@@ -19,7 +19,7 @@ export default function HowItWorks({ content = defaultContent }) {
         <div key={index} className={`relative flex items-center mb-24 ${index % 2 === 0 ? "md:flex-row-reverse" : ""}`}>
           <div className="w-full md:w-1/2" />
 
-          <div className="absolute left-8 md:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-black border-4 border-zinc-800 z-10 flex items-center justify-center">
+          <div className="absolute left-8 md:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-[var(--porcelain-50)] border-4 border-[var(--line)] z-10 flex items-center justify-center">
             <div className="w-2 h-2 bg-indigo-500 rounded-full" />
           </div>
 
@@ -34,7 +34,7 @@ export default function HowItWorks({ content = defaultContent }) {
                 {content.stepLabelPrefix} {String(index + 1).padStart(2, "0")}
               </span>
               <h4 className="text-2xl font-bold mb-4">{step.title}</h4>
-              <p className="text-zinc-400">{step.description}</p>
+              <p className="text-[var(--ink-700)]">{step.description}</p>
             </motion.div>
           </div>
         </div>

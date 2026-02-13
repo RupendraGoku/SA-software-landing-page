@@ -5,11 +5,12 @@ export const headerContent = {
   },
   navLinks: [
     { name: "Platform", href: "#platform" },
+    { name: "Experience", href: "#experience" },
     { name: "Features", href: "#features" },
     { name: "Solutions", href: "#solutions" },
-    { name: "Pricing", href: "#pricing" },
+    // { name: "Pricing", href: "#pricing" },
   ],
-  loginLabel: "Client Login",
-  primaryCtaLabel: "Get Demo",
-  mobilePrimaryCtaLabel: "Get a Demo",
+  // loginLabel: "Client Login",
+  // primaryCtaLabel: "Get Demo",
+  // mobilePrimaryCtaLabel: "Get a Demo",
 };

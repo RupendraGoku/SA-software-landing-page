@@ -4,7 +4,7 @@ export const footerContent = {
   brand: {
     name: "SA Softech India",
     description:
-      "Custom software and ERP solutions for CFS, ICD, transport, and execution-heavy business operations. Nem Naryan Rai Market, Krishna Vihar Colony, Beur, Patna.",
+      "SA Softech India provides user-friendly business software with easy integration, secure cloud backup, and smart automation. Nem Naryan Rai Market, Krishna Vihar Colony, Beur, Patna.",
   },
   socialLinks: [
     { icon: Twitter, label: "Website", href: "#" },
@@ -13,12 +13,12 @@ export const footerContent = {
   ],
   linkGroups: [
     { title: "Products", links: ["Tracker", "Wheeler", "Infinity", "Integrations", "Pricing"] },
-    { title: "Company", links: ["About Us", "Industries", "Clients", "Blog", "Contact"] },
+    { title: "Company", links: ["About Us", "Solutions", "Customers", "Blog", "Contact"] },
     { title: "Legal", links: ["Privacy Policy", "Terms and Conditions", "Data Policy", "SLA"] },
   ],
   newsletter: {
     title: "Stay Updated",
-    description: "Get product news, rollout tips, and operational best practices.",
+    description: "Get software updates, workflow tips, and product announcements.",
     placeholder: "Enter your email",
     buttonLabel: "Join",
   },

@@ -1,23 +1,23 @@
 import { FileKey, Lock, Server, Shield } from "lucide-react";
 
 export const securityContent = {
-  badgeLabel: "Security by Design",
+  badgeLabel: "Secure Cloud Backup",
   heading: {
-    line1: "Protect critical",
-    line2: "operational data.",
+    line1: "Your data is always",
+    line2: "safe and backed up.",
   },
   description:
-    "From user permissions to auditability, every workflow is designed to keep business-critical data secure and accountable.",
+    "We combine secure cloud infrastructure with backup and recovery controls so your business data stays protected at every stage.",
   controls: [
-    "Encrypted data in transit and at rest",
+    "Encrypted storage and transfer protection",
+    "Automated secure cloud backups",
     "Granular role-based access controls",
-    "Action-level logs for key processes",
   ],
-  certificationLabel: "Core Security Controls",
+  certificationLabel: "Data Protection Layers",
   certifications: [
-    { name: "Access Controls", icon: Shield },
+    { name: "Access Control", icon: Shield },
     { name: "Audit Trails", icon: FileKey },
     { name: "Encrypted Backups", icon: Lock },
-    { name: "Disaster Recovery", icon: Server },
+    { name: "Recovery Ready", icon: Server },
   ],
 };

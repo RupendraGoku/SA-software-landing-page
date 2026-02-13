@@ -9,21 +9,32 @@
 }
 
 :root {
-  --glass-border: rgba(255, 255, 255, 0.08);
-  --glass-bg: rgba(10, 10, 12, 0.6);
-  --glass-shine: rgba(255, 255, 255, 0.03);
+  --porcelain-50: #faf5ec;
+  --porcelain-100: #f3ebde;
+  --porcelain-200: #e8dcc9;
+  --ink-900: #2f251a;
+  --ink-700: #5f5345;
+  --ink-500: #8a7a66;
+  --line: rgba(110, 88, 62, 0.22);
+  --glass-border: rgba(110, 88, 62, 0.2);
+  --glass-bg: rgba(255, 252, 246, 0.7);
+  --glass-shine: rgba(255, 255, 255, 0.5);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  /* CHANGE: From flat black to a Deep Navy/Slate radial gradient */
-  background: radial-gradient(circle at 50% 0%, #1e1b4b 0%, #020617 60%, #000000 100%);
-  @apply text-zinc-100 antialiased selection:bg-indigo-500/30;
+  background: radial-gradient(circle at 50% -20%, #fffaf2 0%, var(--porcelain-50) 45%, var(--porcelain-100) 100%);
+  color: var(--ink-900);
+  @apply antialiased selection:bg-indigo-500/20;
   min-height: 100vh;
 }
 
 /* Cinematic Utilities */
 .text-gradient {
-  @apply bg-gradient-to-br from-white via-zinc-200 to-zinc-500 bg-clip-text text-transparent;
+  @apply bg-gradient-to-b from-[var(--ink-900)] via-[#5f4b36] to-[#9a866d] bg-clip-text text-transparent;
 }
 
 .glass-panel {
@@ -31,7 +42,7 @@ body {
 }
 
 .glow-point {
-  box-shadow: 0 0 60px 20px rgba(99, 102, 241, 0.15);
+  box-shadow: 0 0 50px 14px rgba(99, 102, 241, 0.2);
 }
 
 @keyframes scan {
@@ -43,12 +54,7 @@ body {
 /* NEW: Elegant Grid Overlay */
 .bg-grid {
   background-size: 50px 50px;
-  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-image: linear-gradient(to right, rgba(93, 74, 53, 0.08) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(93, 74, 53, 0.08) 1px, transparent 1px);
   mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
-}
-
-.text-gradient {
-  /* Brighter, more metallic gradient */
-  @apply bg-gradient-to-b from-white via-indigo-100 to-indigo-300 bg-clip-text text-transparent;
 }

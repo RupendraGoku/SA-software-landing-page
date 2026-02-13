@@ -23,15 +23,15 @@ export default function TrustLogos({ content = defaultContent }) {
   }, []);
 
   return (
-    <section className="py-12 border-y border-white/5 bg-black/50 overflow-hidden">
-      <div className="text-center mb-8 text-sm text-zinc-500 uppercase tracking-widest font-medium">
+    <section className="py-12 border-y border-[var(--line)] bg-[var(--porcelain-50)] overflow-hidden">
+      <div className="text-center mb-8 text-sm text-[var(--ink-500)] uppercase tracking-widest font-medium">
         {content.sectionLabel}
       </div>
       
       <div ref={marqueeRef} className="flex overflow-hidden whitespace-nowrap mask-linear-fade">
         <div className="marquee-content flex gap-16 px-8 items-center">
           {content.logos.map((logo, i) => (
-            <span key={i} className="text-2xl font-bold text-zinc-700 hover:text-white transition-colors duration-500 cursor-default">
+            <span key={i} className="text-2xl font-bold text-[var(--ink-500)] hover:text-[var(--ink-900)] transition-colors duration-500 cursor-default">
               {logo.toUpperCase()}
             </span>
           ))}
