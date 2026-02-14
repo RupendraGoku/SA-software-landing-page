@@ -1,57 +1,47 @@
 export const featuredProjectsContent = {
   heading: {
-    line1: "Selected",
-    highlight: "Deployments",
+    line1: "Featured",
+    highlight: "Projects",
   },
   description:
-    "Engineering solutions that scale. From high-frequency trading to global media distribution.",
+    "Building scalable SaaS platforms across government supply chains, e-commerce, and education systems.",
   viewAllLabel: "View Github",
   viewAllHref: "#",
   projectLinkLabel: "View Case Study",
   projects: [
     {
-      id: "nova-financial",
-      title: "Nova Financial",
-      category: "FinTech Platform",
+      id: "gkakn",
+      title: "Gramin Khadya Aapurti Khadan",
+      category: "SaaS",
       image:
-        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop",
-      tech: ["Laravel", "Vue.js", "MySQL"],
+        "asset/gkakn.jpeg",
+      tech: ["React", "Vue.js", "Bootstrap","MySQL"],
       description:
-        "Real-time banking dashboard processing $5M+ daily transactions with sub-second latency.",
-      href: "#",
+        "A digital supply chain and ration distribution management system designed to streamline rural food supply operations with real-time tracking and reporting.",
+      href: "https://gkakn.com",
     },
     {
-      id: "orbit-health",
-      title: "Orbit Health",
-      category: "MedTech SaaS",
+      id: "school-saas",
+      title: "SiksaPath",
+      category: "Edutech SaaS",
       image:
-        "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070&auto=format&fit=crop",
-      tech: ["React", "Node.js", "Redis"],
+        "asset/siksapath.png",
+      tech: ["Laravel", "PHP", "Bootstrap", "MySQL"],
       description:
-        "AI-powered diagnostic tool used by 200+ clinics. HIPAA compliant architecture.",
-      href: "#",
+        "A comprehensive school management platform that digitizes admissions, attendance, examinations, and communication between teachers, students, and parents.",
+      href: "https://siksapath.com/",
     },
     {
-      id: "hyperstream",
-      title: "HyperStream",
-      category: "Media Streaming",
+      id: "B2B",
+      title: "BuyyBox",
+      category: "E-commerce SaaS",
       image:
-        "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1974&auto=format&fit=crop",
-      tech: [".NET Core"],
+        "asset/B2B.png",
+      tech: ["React", "Tailwind", "Node.js", "MongoDB", "Express"],
       description:
-        "Adaptive bitrate streaming engine capable of handling 100k concurrent viewers.",
-      href: "#",
+        "A B2B e-commerce platform enabling wholesalers and retailers to manage bulk orders, inventory, and payments through a seamless multi-vendor system.",
+      href: "https://buyybox.com/",
     },
-    {
-      id: "propulsion-kit",
-      title: "Propulsion Kit",
-      category: "DevTools",
-      image:
-        "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=2069&auto=format&fit=crop",
-      tech: ["Tailwind", "Next.js", "Hostinger"],
-      description:
-        "A complete UI kit for shipping enterprise dashboards in record time.",
-      href: "#",
-    },
+    
   ],
 };

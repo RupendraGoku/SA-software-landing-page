@@ -37,7 +37,7 @@ export default function FeaturedProjects({ content = defaultContent }) {
         </motion.div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-3 md:grid-cols-3 gap-8">
           {projects.map((project) => (
             <motion.div
               key={project.id}
@@ -98,9 +98,15 @@ export default function FeaturedProjects({ content = defaultContent }) {
                   </motion.div>
 
                   {/* Link Button */}
-                  <a href={project.href} className="flex items-center gap-2 text-sm font-medium text-white group-hover:text-indigo-300 transition-colors">
-                    {projectLinkLabel} <ArrowUpRight size={16} />
-                  </a>
+                  <a 
+  href={project.href}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="flex items-center gap-2 text-sm font-medium text-white group-hover:text-indigo-300 transition-colors"
+>
+  {projectLinkLabel}
+  <ArrowUpRight size={16} />
+</a>
                 </div>
               </div>
             </motion.div>
