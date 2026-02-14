@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { featuredProjectsContent as defaultContent } from "../content/featuredProjectsContent";
 
 export default function FeaturedProjects({ content = defaultContent }) {
   const [hovered, setHovered] = useState(null);
+  const [canHover, setCanHover] = useState(false);
   const {
     heading,
     description,
@@ -14,103 +15,158 @@ export default function FeaturedProjects({ content = defaultContent }) {
     projects,
   } = content;
 
+  useEffect(() => {
+    if (typeof window === "undefined") return undefined;
+
+    const mediaQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
+    const updateCanHover = () => setCanHover(mediaQuery.matches);
+
+    updateCanHover();
+
+    if (typeof mediaQuery.addEventListener === "function") {
+      mediaQuery.addEventListener("change", updateCanHover);
+      return () => mediaQuery.removeEventListener("change", updateCanHover);
+    }
+
+    mediaQuery.addListener(updateCanHover);
+    return () => mediaQuery.removeListener(updateCanHover);
+  }, []);
+
   return (
-    <section className="py-32 relative overflow-hidden bg-[var(--porcelain-100)]">
-      <div className="container mx-auto px-6 relative z-10">
+    <section className="relative overflow-hidden bg-[var(--porcelain-100)] py-20 md:py-32">
+      <div className="container relative z-10 mx-auto px-4 sm:px-6">
         
         {/* Header */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6"
+          className="mb-12 flex flex-col justify-between gap-4 md:mb-16 md:flex-row md:items-end md:gap-6"
         >
           <div>
-            <h2 className="text-4xl md:text-5xl font-bold text-[var(--ink-900)] mb-4">
+            <h2 className="mb-4 text-3xl font-bold text-[var(--ink-900)] sm:text-4xl md:text-5xl">
               {heading.line1} <span className="text-indigo-500">{heading.highlight}</span>
             </h2>
-            <p className="text-[var(--ink-700)] max-w-lg">{description}</p>
+            <p className="max-w-lg text-sm text-[var(--ink-700)] sm:text-base">{description}</p>
           </div>
-          <a href={viewAllHref} className="flex items-center gap-2 text-[var(--ink-900)] hover:text-indigo-600 transition-colors group">
+          <a
+            href={viewAllHref}
+            className="group flex w-fit items-center gap-2 self-start text-sm text-[var(--ink-900)] transition-colors hover:text-indigo-600 sm:text-base"
+          >
             {viewAllLabel} <ArrowUpRight className="group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" size={18} />
           </a>
         </motion.div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-3 md:grid-cols-3 gap-8">
-          {projects.map((project) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              onMouseEnter={() => setHovered(project.id)}
-              onMouseLeave={() => setHovered(null)}
-              className="group relative h-[400px] rounded-3xl overflow-hidden cursor-pointer border border-[var(--line)] bg-white/60"
-            >
-              {/* Background Image (Zoom & Color Effect) */}
-              <div className="absolute inset-0 overflow-hidden">
-                <motion.img 
-                  src={project.image} 
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-all duration-700"
-                  animate={{ 
-                    scale: hovered === project.id ? 1.1 : 1,
-                    filter: hovered === project.id ? "grayscale(8%)" : "grayscale(45%)"
-                  }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[rgba(66,52,38,0.75)] via-[rgba(66,52,38,0.2)] to-transparent opacity-85 group-hover:opacity-65 transition-opacity duration-500" />
-              </div>
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8 xl:grid-cols-3">
+          {projects.map((project) => {
+            const isHovered = hovered === project.id;
+            const isTouchExpanded = !canHover && hovered === project.id;
+            const showDetails = canHover ? isHovered : isTouchExpanded;
 
-              {/* Content Layer */}
-              <div className="absolute inset-0 p-8 flex flex-col justify-end">
-
-                {/* Top Badge */}
-                <div className="absolute top-8 right-8 px-3 py-1 rounded-full bg-white/65 border border-[var(--line)] backdrop-blur-md text-xs font-mono text-[var(--ink-700)]">
-                  {project.category}
-                </div>
-
-                {/* Text Content */}
-                <div className="relative z-10 transform transition-transform duration-500 group-hover:-translate-y-2">
-                  <h3 className="text-3xl font-bold text-white mb-2">{project.title}</h3>
-                  
-                  {/* Description (Hidden by default, slides up on hover) */}
-                  <motion.div 
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ 
-                      height: hovered === project.id ? "auto" : 0,
-                      opacity: hovered === project.id ? 1 : 0
+            return (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                onMouseEnter={() => canHover && setHovered(project.id)}
+                onMouseLeave={() => canHover && setHovered(null)}
+                onClick={() =>
+                  !canHover &&
+                  setHovered((prev) => (prev === project.id ? null : project.id))
+                }
+                className={`group relative mx-auto w-full max-w-md cursor-pointer overflow-hidden rounded-3xl border border-[var(--line)] bg-white/60 md:mx-0 md:max-w-none md:h-[380px] lg:h-[400px] ${
+                  !canHover && showDetails
+                    ? "h-[420px] sm:h-[440px]"
+                    : "h-[320px] sm:h-[340px]"
+                }`}
+              >
+                {/* Background Image (Zoom & Color Effect) */}
+                <div className="absolute inset-0 overflow-hidden">
+                  <motion.img
+                    src={project.image}
+                    alt={project.title}
+                    className="h-full w-full object-cover transition-all duration-700"
+                    animate={{
+                      scale: canHover && isHovered ? 1.1 : 1,
+                      filter: canHover
+                        ? isHovered
+                          ? "grayscale(8%)"
+                          : "grayscale(45%)"
+                        : "grayscale(12%)",
                     }}
-                    className="overflow-hidden"
-                  >
-                    <p className="text-[rgba(255,249,239,0.92)] text-sm mb-4 leading-relaxed">
-                      {project.description}
-                    </p>
-                    
-                    {/* Tech Tags */}
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {project.tech.map((t, i) => (
-                        <span key={i} className="px-2 py-1 text-[10px] uppercase tracking-wider font-medium text-indigo-100 bg-indigo-500/25 border border-indigo-200/35 rounded">
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-                  </motion.div>
-
-                  {/* Link Button */}
-                  <a 
-  href={project.href}
-  target="_blank"
-  rel="noopener noreferrer"
-  className="flex items-center gap-2 text-sm font-medium text-white group-hover:text-indigo-300 transition-colors"
->
-  {projectLinkLabel}
-  <ArrowUpRight size={16} />
-</a>
+                  />
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-t from-[rgba(66,52,38,0.75)] via-[rgba(66,52,38,0.2)] to-transparent opacity-85 transition-opacity duration-500 ${
+                      canHover ? "group-hover:opacity-65" : ""
+                    }`}
+                  />
                 </div>
-              </div>
-            </motion.div>
-          ))}
+
+                {/* Content Layer */}
+                <div className="absolute inset-0 flex flex-col justify-end p-5 sm:p-8">
+
+                  {/* Top Badge */}
+                  <div className="absolute right-5 top-5 rounded-full border border-[var(--line)] bg-white/65 px-2.5 py-1 text-[10px] font-mono text-[var(--ink-700)] backdrop-blur-md sm:right-8 sm:top-8 sm:px-3 sm:text-xs">
+                    {project.category}
+                  </div>
+
+                  {/* Text Content */}
+                  <div
+                    className={`relative z-10 transform transition-transform duration-500 ${
+                      canHover ? "group-hover:-translate-y-2" : ""
+                    }`}
+                  >
+                    {!canHover && !showDetails && (
+                      <p className="mb-2 text-[11px] uppercase tracking-[0.16em] text-[rgba(255,249,239,0.78)]">
+                        Tap to view details
+                      </p>
+                    )}
+                    <h3 className="mb-2 text-2xl font-bold text-white sm:text-3xl">
+                      {project.title}
+                    </h3>
+
+                    {/* Description (Hidden by default, slides up on hover) */}
+                    <motion.div
+                      initial={false}
+                      animate={{
+                        height: showDetails ? "auto" : 0,
+                        opacity: showDetails ? 1 : 0,
+                      }}
+                      className="overflow-hidden"
+                    >
+                      <p className="mb-4 text-sm leading-relaxed text-[rgba(255,249,239,0.92)]">
+                        {project.description}
+                      </p>
+
+                      {/* Tech Tags */}
+                      <div className="mb-5 flex flex-wrap gap-2 sm:mb-6">
+                        {project.tech.map((t, i) => (
+                          <span key={i} className="rounded border border-indigo-200/35 bg-indigo-500/25 px-2 py-1 text-[10px] font-medium uppercase tracking-wider text-indigo-100">
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                    </motion.div>
+
+                    {/* Link Button */}
+                    <a
+                      href={project.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`flex items-center gap-2 text-sm font-medium text-white transition-colors ${
+                        canHover ? "group-hover:text-indigo-300" : ""
+                      }`}
+                    >
+                      {projectLinkLabel}
+                      <ArrowUpRight size={16} />
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
 
       </div>

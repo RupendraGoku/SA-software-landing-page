@@ -61,7 +61,7 @@ export default function Header({ content = defaultContent }) {
               <a
                 key={link.name}
                 href={link.href}
-                className="relative px-4 py-2 text-sm font-medium text-[var(--ink-700)] hover:text-indigo-700 transition-colors rounded-full group hover:bg-indigo-100"
+                className="relative px-4 py-2 text-sm font-medium text-[var(--ink-700)] hover:text-indigo-700 transition-colors rounded-full group hover:bg-indigo-300"
               >
                 <span className="relative z-10">{link.name}</span>
 
