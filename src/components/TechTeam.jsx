@@ -87,7 +87,7 @@ function TeamCard({ member }) {
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
       style={{ rotateX, rotateY, transformStyle: "preserve-3d", willChange: "transform" }}
-      className="relative w-56 md:w-64 aspect-[3/4] rounded-2xl overflow-hidden cursor-pointer group mx-auto will-change-transform"
+      className="relative w-full aspect-[4/5] rounded-2xl overflow-hidden cursor-pointer group mx-auto will-change-transform"
     >
       {/* Background Image */}
       <div
@@ -104,12 +104,12 @@ function TeamCard({ member }) {
       {/* Content */}
       <div
         style={{ transform: "translateZ(50px)" }} // full depth kept
-        className="absolute bottom-0 left-0 p-5"
+        className="absolute bottom-0 left-0 p-3 md:p-4"
       >
-        <h3 className="text-2xl font-bold text-white">
+        <h3 className="text-base md:text-lg font-bold text-white leading-tight">
           {member.name}
         </h3>
-        <p className="text-indigo-200 font-mono text-sm">
+        <p className="text-indigo-200 font-mono text-[11px] md:text-xs">
           {member.role}
         </p>
       </div>
@@ -140,7 +140,7 @@ export default function TechTeam({ content = defaultContent }) {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 perspective-1000">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 lg:gap-8 perspective-1000">
           {members.map((member, i) => (
             <TeamCard key={i} member={member} />
           ))}
@@ -149,3 +149,6 @@ export default function TechTeam({ content = defaultContent }) {
     </section>
   );
 }
+
+
+

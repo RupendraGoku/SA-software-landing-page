@@ -30,7 +30,7 @@ export default function Experience({ content = defaultContent }) {
     </span>
 
     {/* PLUS SIGN */}
-    <span className="absolute top-4 right-2 md:top-6 md:right-0 md:left-62 text-5xl md:text-7xl font-bold text-indigo-500">
+    <span className="absolute top-4 right-2 md:top-6 md:right-0 md:left-full text-5xl md:text-7xl font-bold text-indigo-500">
       {suffix}
     </span>
 
