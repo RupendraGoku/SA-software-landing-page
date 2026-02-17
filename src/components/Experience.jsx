@@ -5,7 +5,7 @@ export default function Experience({ content = defaultContent }) {
   const { number, suffix, label, established, heading, description, stats } = content;
 
   return (
-    <section id="experience" className="py-24 relative overflow-hidden scroll-mt-24">
+    <section id="experience" className="pt-0 pb-24 md:pt-0 relative overflow-hidden scroll-mt-24">
       <div className="container mx-auto px-6">
         <div className="relative z-10 max-w-5xl mx-auto">
             
