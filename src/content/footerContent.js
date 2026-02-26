@@ -4,7 +4,8 @@ export const footerContent = {
   brand: {
     name: "SA Softech India",
     description:
-      "SA Softech India provides user-friendly business software with easy integration, secure cloud backup, and smart automation. Nem Naryan Rai Market, Krishna Vihar Colony, Beur, Patna.",
+      "SA Softech India provides user-friendly business software with easy integration, secure cloud backup, and smart automation.
+      Verma Karpura House, 504 - 5th Floor, SP Verma Road, Patna 800001 [Bihar].",
   },
   socialLinks: [
     { icon: Twitter, label: "Website", href: "#" },
@@ -24,6 +25,6 @@ export const footerContent = {
   },
   bottomBar: {
     copyright: "(c) 2026 SA Softech India. All rights reserved.",
-    note: "Address: Nem Naryan Rai Market, Krishna Vihar Colony, Beur, Patna.",
+    note: "Address: Verma Karpura House, 504 - 5th Floor, SP Verma Road, Patna 800001 [Bihar].",
   },
 };
