@@ -13,7 +13,7 @@ export const techTeamContent = {
     {
       name: "Rupendra Kumar",
       role: "Frontend Developer",
-      img: "asset/rupe.png",
+      img: "asset/user.png",
     },
     {
       name: "Rajan Kumar",
@@ -23,7 +23,7 @@ export const techTeamContent = {
     {
       name: "Shivam Mandal",
       role: "Software Developer",
-      img: "asset/shi.jpeg",
+      img: "asset/user.png",
     },
     {
       name: "Deepak",
