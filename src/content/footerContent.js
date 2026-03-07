@@ -1,4 +1,4 @@
-import { Github, Linkedin, Twitter } from "lucide-react";
+import { Facebook, Instagram, Twitter,Linkedin } from "lucide-react";
 
 export const footerContent = {
   brand: {
@@ -8,9 +8,11 @@ export const footerContent = {
       Verma Karpura House, 504 - 5th Floor, SP Verma Road, Patna 800001 [Bihar].`,
   },
   socialLinks: [
-    { icon: Twitter, label: "Website", href: "#" },
-    { icon: Github, label: "Product", href: "#" },
+    { icon: Facebook, label: "Website", href: "https://www.facebook.com/sasoftechindia/" },
+    { icon: Instagram, label: "Product", href: "https://www.instagram.com/sasoftechindia/" },
     { icon: Linkedin, label: "Contact", href: "#" },
+    { icon: Twitter, label: "Contact", href: "#" },
+
   ],
   linkGroups: [
     { title: "Products", links: ["Tracker", "Wheeler", "Infinity", "Integrations", "Pricing"] },
