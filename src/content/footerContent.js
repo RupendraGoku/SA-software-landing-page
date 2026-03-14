@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Twitter,Linkedin } from "lucide-react";
+import { Facebook, Instagram, Youtube,Linkedin } from "lucide-react";
 
 export const footerContent = {
   brand: {
