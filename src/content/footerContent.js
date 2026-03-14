@@ -10,8 +10,8 @@ export const footerContent = {
   socialLinks: [
     { icon: Facebook, label: "Website", href: "https://www.facebook.com/sasoftechindia/" },
     { icon: Instagram, label: "Product", href: "https://www.instagram.com/sasoftechindia/" },
+    { icon: Youtube, label: "Contact", href: "https://www.youtube.com/@SASoftechIndia" },
     { icon: Linkedin, label: "Contact", href: "#" },
-    { icon: Twitter, label: "Contact", href: "#" },
 
   ],
   linkGroups: [
