@@ -82,7 +82,7 @@ export default function Hero({ content = defaultContent }) {
         </motion.div>
 
         {/* Real Dashboard Mock */}
-        {/* <motion.div
+        /* {/* <motion.div
           style={{ y: y1, opacity }}
           className="mt-20 relative mx-auto max-w-6xl rounded-2xl border border-[var(--line)] bg-gradient-to-b from-white/70 to-[var(--porcelain-200)] backdrop-blur-2xl shadow-[0_20px_70px_rgba(110,88,62,0.25)] overflow-hidden text-left"
         >
@@ -157,7 +157,7 @@ export default function Hero({ content = defaultContent }) {
               </div>
             </div>
           </div>
-        </motion.div> */}
+        </motion.div> */} */
       </motion.div>
     </section>
   );
