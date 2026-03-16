@@ -33,7 +33,7 @@ export default function FeaturedProjects({ content = defaultContent }) {
   }, []);
 
   return (
-    <section className="relative overflow-hidden bg-[var(--porcelain-100)] py-20 md:py-32">
+    <section className="relative overflow-hidden bg-[var(--porcelain-100)] py-14 md:py16">
       <div className="container relative z-10 mx-auto px-4 sm:px-6">
         
         {/* Header */}
@@ -49,12 +49,12 @@ export default function FeaturedProjects({ content = defaultContent }) {
             </h2>
             <p className="max-w-lg text-sm text-[var(--ink-700)] sm:text-base">{description}</p>
           </div>
-          <a
+          {/* <a
             href={viewAllHref}
             className="group flex w-fit items-center gap-2 self-start text-sm text-[var(--ink-900)] transition-colors hover:text-indigo-600 sm:text-base"
           >
             {viewAllLabel} <ArrowUpRight className="group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" size={18} />
-          </a>
+          </a> */}
         </motion.div>
 
         {/* Projects Grid */}

@@ -5,7 +5,7 @@ export default function TechStack({ content = defaultContent }) {
   const { heading, stack } = content;
 
   return (
-    <section id="platform" className="py-24 bg-[var(--porcelain-100)] relative scroll-mt-24">
+    <section id="platform" className="py-5 bg-[var(--porcelain-100)] relative scroll-mt-24">
       <div className="container mx-auto px-6 text-center">
         
         <motion.h2 

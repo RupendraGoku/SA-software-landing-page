@@ -4,7 +4,7 @@ import { finalCtaContent as defaultContent } from "../content/finalCtaContent";
 
 export default function FinalCTA({ content = defaultContent }) {
   return (
-    <section className="relative min-h-[72vh] md:min-h-[80vh] flex items-center justify-center overflow-hidden bg-[var(--porcelain-100)]">
+    <section className="relative min-h-[52vh] md:min-h-[60vh] flex items-center justify-center overflow-hidden bg-[var(--porcelain-100)]">
       {/* Premium, lightweight ambience */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-[radial-gradient(120%_120%_at_50%_0%,rgba(99,102,241,0.18)_0%,rgba(250,245,236,0.96)_58%,rgba(243,235,222,1)_100%)]" />

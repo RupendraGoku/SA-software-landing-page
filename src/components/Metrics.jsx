@@ -30,7 +30,7 @@ function Counter({ value, suffix }) {
 
 export default function Metrics({ content = defaultContent }) {
   return (
-    <section className="py-32 bg-[var(--porcelain-200)] relative overflow-hidden">
+    <section className="py-16 bg-[var(--porcelain-200)] relative overflow-hidden">
       {/* Background Grid */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(110,88,62,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(110,88,62,0.08)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
 

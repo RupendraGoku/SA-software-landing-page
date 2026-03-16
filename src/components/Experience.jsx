@@ -56,7 +56,7 @@ export default function Experience({ content = defaultContent }) {
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, delay: 0.2 }}
                 >
-                    <div className="inline-block px-3 py-1 mb-6 rounded-full border border-[var(--line)] bg-white/60 backdrop-blur-md">
+                    <div className="inline-block px-3 py-1 mb-2 rounded-full border border-[var(--line)] bg-white/60 backdrop-blur-md">
                         <span className="text-sm text-indigo-600 font-mono">{established}</span>
                     </div>
                     

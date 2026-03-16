@@ -4,7 +4,7 @@ import { securityContent as defaultContent } from "../content/securityContent";
 
 export default function Security({ content = defaultContent }) {
   return (
-    <section className="relative py-32 bg-[var(--porcelain-100)] overflow-hidden">
+    <section className="relative py-16 bg-[var(--porcelain-100)] overflow-hidden">
       {/* Background Radar Effect */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-emerald-500/5 rounded-full blur-[100px] animate-pulse" />
 

@@ -121,13 +121,13 @@ export default function TechTeam({ content = defaultContent }) {
   const { heading, description, members } = content;
 
   return (
-    <section className="py-32">
+    <section className="py-5">
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="mb-6"
         >
           <h2 className="text-5xl font-bold text-[var(--ink-900)] mb-6">
             {heading.line1}{" "}

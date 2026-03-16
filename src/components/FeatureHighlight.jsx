@@ -43,12 +43,12 @@ export default function FeatureHighlight({ content = defaultContent }) {
       <div ref={containerRef} className="relative" style={{ height: `${features.length * 100}vh` }}>
         <div className="container mx-auto px-6 h-full flex items-start">
           {/* LEFT: Scrolling Content */}
-          <div className="w-full lg:w-1/2 py-[50vh] flex flex-col justify-between gap-[50vh]">
+          <div className="w-full lg:w-1/2 py-[20vh] flex flex-col justify-between gap-[50vh]">
             {features.map((feature, index) => {
               const Icon = feature.icon;
 
               return (
-                <div key={feature.id} className="h-[50vh] flex flex-col justify-center">
+                <div key={feature.id} className="h-[40vh] flex flex-col justify-center">
                   <VelocityText className="group">
                     <div className="inline-flex items-center gap-3 mb-6 px-4 py-2 rounded-full border border-[var(--line)] bg-white/60 backdrop-blur-md w-fit">
                       <Icon className="w-5 h-5 text-indigo-400" />

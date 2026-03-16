@@ -62,7 +62,7 @@ export default function ProblemSolution({ content = defaultContent }) {
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
   return (
-    <section id="solutions" ref={containerRef} className="relative py-32 bg-[var(--porcelain-100)] overflow-hidden scroll-mt-24">
+    <section id="solutions" ref={containerRef} className="relative  bg-[var(--porcelain-100)] overflow-hidden scroll-mt-24">
       {/* Background Ambience */}
       <motion.div style={{ opacity }} className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-red-200/40 rounded-full blur-[120px]" />

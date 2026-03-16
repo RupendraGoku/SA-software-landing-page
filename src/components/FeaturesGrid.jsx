@@ -4,7 +4,7 @@ import { variants } from "../utils/motion";
 
 export default function FeaturesGrid({ content = defaultContent }) {
   return (
-    <section id="features" className="py-32 px-6 container mx-auto scroll-mt-24">
+    <section id="features" className="py-10 px-6 container mx-auto scroll-mt-24">
       <motion.div
         initial="hidden"
         whileInView="visible"
