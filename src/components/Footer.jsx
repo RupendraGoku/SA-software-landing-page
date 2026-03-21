@@ -13,7 +13,9 @@ export default function Footer({ content = defaultContent }) {
               </div>
               <span className="text-xl font-bold text-[var(--ink-900)]">{content.brand.name}</span>
             </div>
-            <p className="text-[var(--ink-700)] text-sm leading-relaxed mb-8 max-w-xs">{content.brand.description}</p>
+            <p className="text-[var(--ink-700)] text-sm leading-relaxed mb-1 max-w-xs">{content.brand.description}</p>
+            <p className="text-[var(--ink-700)] text-sm leading-relaxed mb-8 max-w-xs">{content.brand.subDescription}</p>
+
             {/* Socials */}
             <div className="flex gap-4">
               {content.socialLinks.map((link) => {
@@ -38,13 +40,18 @@ export default function Footer({ content = defaultContent }) {
             <div key={group.title}>
               <h4 className="text-[var(--ink-900)] font-semibold mb-6">{group.title}</h4>
               <ul className="space-y-4">
-                {group.links.map((link) => (
-                  <li key={link}>
-                    <a href="#" className="text-sm text-[var(--ink-700)] hover:text-indigo-400 transition-colors">
-                      {link}
-                    </a>
-                  </li>
-                ))}
+                {group.links.map((link, i) => (
+  <li key={i}>
+    <a
+      href={link.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-sm text-[var(--ink-700)] hover:text-indigo-400 transition-colors"
+    >
+      {link.label}
+    </a>
+  </li>
+))}
               </ul>
             </div>
           ))}

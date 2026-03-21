@@ -11,18 +11,18 @@ export const techTeamContent = {
       img: "asset/user.png",
     },
     {
-      name: "Rupendra Kumar",
-      role: "Frontend Developer",
+      name: "Shivam Mandal",
+      role: "Software Developer",
       img: "asset/user.png",
     },
     {
-      name: "Rajan Kumar",
+      name: "Chitranjan Singh",
       role: "Mobile App Developer",
       img: "asset/user.png",
     },
     {
-      name: "Shivam Mandal",
-      role: "Software Developer",
+      name: "Rupendra Kumar",
+      role: "Frontend Developer",
       img: "asset/user.png",
     },
     {
