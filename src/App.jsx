@@ -38,34 +38,37 @@ import { techStackContent } from './content/techStackContent';
 import { techTeamContent } from './content/techTeamContent';
 import FeaturedProjects from './components/FeaturedProjects';
 import { featuredProjectsContent } from './content/featuredProjectsContent';
+import { DemoModalProvider } from './components/DemoModal';
 
 // Optional: Import Smooth Scroll wrapper (e.g. Lenis) here for true Awwwards feel
 
 export default function App() {
   return (
-    <div className="bg-[var(--porcelain-50)] min-h-screen selection:bg-indigo-500/30">
-      <Header content={headerContent} />
-      <main>
-        <Hero content={heroContent} />
-        <Experience content={experienceContent} />
-        <TrustLogos content={trustLogosContent} />
-        <ProblemSolution content={problemSolutionContent} />
-        <TechStack content={techStackContent} />
-        <FeaturesGrid content={featuresGridContent} />
-        <FeatureHighlight content={featureHighlightContent} />
-        <HowItWorks content={howItWorksContent} />
-        <UseCases content={useCasesContent} />
-        <Metrics content={metricsContent} />
-        {/* <Pricing content={pricingContent} /> */}
-        <Security content={securityContent} />
-        <FeaturedProjects content={featuredProjectsContent} />
-        <Testimonials content={testimonialsContent} />
-        <Reviews content={reviewsContent} />
-        <Support content={supportContent} />
-        <FinalCTA content={finalCtaContent} />
-        <TechTeam content={techTeamContent} />
-      </main>
-      <Footer content={footerContent} />
-    </div>
+    <DemoModalProvider>
+      <div className="bg-[var(--porcelain-50)] min-h-screen selection:bg-indigo-500/30">
+        <Header content={headerContent} />
+        <main>
+          <Hero content={heroContent} />
+          <Experience content={experienceContent} />
+          <TrustLogos content={trustLogosContent} />
+          <ProblemSolution content={problemSolutionContent} />
+          <TechStack content={techStackContent} />
+          <FeaturesGrid content={featuresGridContent} />
+          <FeatureHighlight content={featureHighlightContent} />
+          <HowItWorks content={howItWorksContent} />
+          <UseCases content={useCasesContent} />
+          <Metrics content={metricsContent} />
+          {/* <Pricing content={pricingContent} /> */}
+          <Security content={securityContent} />
+          <FeaturedProjects content={featuredProjectsContent} />
+          <Testimonials content={testimonialsContent} />
+          <Reviews content={reviewsContent} />
+          <Support content={supportContent} />
+          <FinalCTA content={finalCtaContent} />
+          <TechTeam content={techTeamContent} />
+        </main>
+        <Footer content={footerContent} />
+      </div>
+    </DemoModalProvider>
   );
 }

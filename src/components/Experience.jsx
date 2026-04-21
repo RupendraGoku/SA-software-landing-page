@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 import { experienceContent as defaultContent } from "../content/experienceContent";
 
 export default function Experience({ content = defaultContent }) {
@@ -13,7 +13,7 @@ export default function Experience({ content = defaultContent }) {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 
                 {/* Left: The Big Number */}
-               <motion.div 
+               <Motion.div 
   initial={{ opacity: 0, scale: 0.8 }}
   whileInView={{ opacity: 1, scale: 1 }}
   viewport={{ once: true }}
@@ -46,17 +46,17 @@ export default function Experience({ content = defaultContent }) {
     </span>
   </div>
 
-</motion.div>
+</Motion.div>
 
 
                 {/* Right: The Narrative & Secondary Stats */}
-                <motion.div 
+                <Motion.div 
                     initial={{ opacity: 0, x: 50 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, delay: 0.2 }}
                 >
-                    <div className="inline-block px-3 py-1 mb-2 rounded-full border border-[var(--line)] bg-white/60 backdrop-blur-md">
+                    <div className="inline-block px-3 py-1 mb-2 rounded-full border border-[var(--line)] bg-white/70">
                         <span className="text-sm text-indigo-600 font-mono">{established}</span>
                     </div>
                     
@@ -78,14 +78,20 @@ export default function Experience({ content = defaultContent }) {
                             </div>
                         ))}
                     </div>
-                </motion.div>
+                </Motion.div>
             </div>
 
         </div>
       </div>
 
       {/* Background Ambience */}
-      <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[500px] h-[500px] bg-indigo-600/10 blur-[120px] rounded-full pointer-events-none" />
+      <div
+        className="absolute inset-0 pointer-events-none opacity-60"
+        style={{
+          background:
+            "radial-gradient(ellipse at left 50%, rgba(99, 102, 241, 0.08), transparent 38%)",
+        }}
+      />
     </section>
   );
 }

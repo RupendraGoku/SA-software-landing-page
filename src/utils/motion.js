@@ -1,6 +1,6 @@
 // Centralized Motion Registry
 export const transitions = {
-  cinema: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+  cinema: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
   spring: { type: "spring", stiffness: 200, damping: 20 },
   slow: { duration: 1.2, ease: "easeInOut" }
 };
@@ -10,15 +10,14 @@ export const variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.1, delayChildren: 0.2 }
+      transition: { staggerChildren: 0.06, delayChildren: 0.1 }
     }
   },
   fadeUp: {
-    hidden: { opacity: 0, y: 40, filter: "blur(10px)" },
+    hidden: { opacity: 0, y: 28 },
     visible: { 
       opacity: 1, 
       y: 0, 
-      filter: "blur(0px)",
       transition: transitions.cinema 
     }
   },

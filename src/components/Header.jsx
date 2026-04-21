@@ -1,42 +1,16 @@
 import { useState } from "react";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { motion as Motion, AnimatePresence } from "framer-motion";
 // import { Menu, X, ChevronRight } from "lucide-react";
 import { headerContent as defaultContent } from "../content/headerContent";
 
 export default function Header({ content = defaultContent }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { scrollY } = useScroll();
-
-  // Scroll Interpolation for the "Glass" effect
-  const backgroundColor = useTransform(
-    scrollY,
-    [0, 100],
-    ["rgba(250,245,236,0)", "rgba(250,245,236,0.82)"]
-  );
-
-  const backdropBlur = useTransform(
-    scrollY,
-    [0, 100],
-    ["blur(0px)", "blur(12px)"]
-  );
-
-  const borderColor = useTransform(
-    scrollY,
-    [0, 100],
-    ["rgba(110, 88, 62, 0)", "rgba(110, 88, 62, 0.28)"]
-  );
-
-  const { brand, navLinks, loginLabel, primaryCtaLabel, mobilePrimaryCtaLabel } = content;
+  const { brand, navLinks, mobilePrimaryCtaLabel = "Book Demo" } = content;
 
   return (
     <>
-      <motion.header
-        style={{
-          backgroundColor,
-          backdropFilter: backdropBlur,
-          borderBottomColor: borderColor,
-        }}
-        className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent"
+      <header
+        className="fixed top-0 left-0 right-0 z-50 border-b border-[rgba(110,88,62,0.16)] bg-[rgba(250,245,236,0.54)] shadow-sm backdrop-blur-sm"
       >
         {/* ✅ CHANGED TO GRID LAYOUT */}
         <div className="container mx-auto px-3 h-20 flex items-center md:grid md:grid-cols-3">
@@ -56,7 +30,7 @@ export default function Header({ content = defaultContent }) {
           </div>
 
           {/* Desktop Nav - Center */}
-          <nav className="hidden md:flex items-center gap-1 bg-white/60 px-2 py-1.5 rounded-full border border-[var(--line)] backdrop-blur-md justify-self-center">
+          <nav className="hidden md:flex items-center gap-1 bg-white/45 px-2 py-1.5 rounded-full border border-[rgba(110,88,62,0.18)] backdrop-blur-lg justify-self-center">
             {navLinks.map((link) => (
               <a
                 key={link.name}
@@ -66,7 +40,7 @@ export default function Header({ content = defaultContent }) {
                 <span className="relative z-10">{link.name}</span>
 
                 {/* Hover Effect Pill */}
-                <motion.div
+                <Motion.div
                   className="absolute inset-0 bg-white/70 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
                   layoutId="nav-pill"
                   transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
@@ -80,12 +54,12 @@ export default function Header({ content = defaultContent }) {
             {/* You can place CTA buttons here later */}
           </div>
         </div>
-      </motion.header>
+      </header>
 
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {mobileMenuOpen && (
-          <motion.div
+          <Motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
@@ -103,11 +77,11 @@ export default function Header({ content = defaultContent }) {
                 </a>
               ))}
               <hr className="border-[var(--line)] my-4" />
-              <button className="w-full py-4 bg-indigo-600 text-white rounded-xl font-semibold">
+              <button type="button" className="book-demo-btn w-full py-4 bg-indigo-600 text-white rounded-xl font-semibold">
                 {mobilePrimaryCtaLabel}
               </button>
             </div>
-          </motion.div>
+          </Motion.div>
         )}
       </AnimatePresence>
     </>

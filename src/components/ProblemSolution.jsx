@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { motion as Motion, useInView } from "framer-motion";
 import { XCircle, CheckCircle2, ArrowRight } from "lucide-react";
 import { problemSolutionContent as defaultContent } from "../content/problemSolutionContent";
 
@@ -12,16 +12,16 @@ const Card = ({ item, index, setDeepFocus, solutionLabelPrefix, cardCtaLabel }) 
   }, [isInView, index, setDeepFocus]);
 
   return (
-    <motion.div
+    <Motion.div
       ref={ref}
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-20%" }}
       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       className={`
-        relative p-8 mb-24 rounded-3xl border border-[var(--line)] backdrop-blur-md overflow-hidden group
+        relative p-8 mb-24 rounded-3xl border border-[var(--line)] overflow-hidden group
         transition-colors duration-500
-        ${isInView ? "bg-white/60 border-[var(--line)]" : "bg-[var(--porcelain-50)] border-[var(--line)]"}
+        ${isInView ? "bg-white/70 border-[var(--line)]" : "bg-[var(--porcelain-50)] border-[var(--line)]"}
       `}
     >
       {/* Dynamic Background Gradient */}
@@ -30,7 +30,7 @@ const Card = ({ item, index, setDeepFocus, solutionLabelPrefix, cardCtaLabel }) 
       {/* Content */}
       <div className="relative z-10">
         <div className="flex items-center gap-3 mb-4">
-          <div className={`p-2 rounded-full bg-white/70 backdrop-blur-sm ${item.accent}`}>
+          <div className={`p-2 rounded-full bg-white/80 ${item.accent}`}>
             <CheckCircle2 size={20} />
           </div>
           <span className={`text-sm font-mono tracking-wider uppercase ${item.accent}`}>
@@ -41,12 +41,15 @@ const Card = ({ item, index, setDeepFocus, solutionLabelPrefix, cardCtaLabel }) 
         <h3 className="text-3xl font-bold text-[var(--ink-900)] mb-4">{item.solution}</h3>
         <p className="text-[var(--ink-700)] leading-relaxed text-lg">{item.solutionDescription}</p>
 
-        <div className="mt-8 flex items-center gap-2 text-sm font-medium text-[var(--ink-700)] group-hover:text-[var(--ink-900)] transition-colors cursor-pointer">
+        <button
+          type="button"
+          className="book-demo-btn mt-8 inline-flex items-center gap-2 text-sm font-medium text-[var(--ink-700)] transition-colors group-hover:text-[var(--ink-900)]"
+        >
           <span>{cardCtaLabel}</span>
           <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-        </div>
+        </button>
       </div>
-    </motion.div>
+    </Motion.div>
   );
 };
 
@@ -54,32 +57,28 @@ export default function ProblemSolution({ content = defaultContent }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const containerRef = useRef(null);
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
-  });
-
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
-
   return (
     <section id="solutions" ref={containerRef} className="relative  bg-[var(--porcelain-100)] overflow-hidden scroll-mt-24">
       {/* Background Ambience */}
-      <motion.div style={{ opacity }} className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-red-200/40 rounded-full blur-[120px]" />
-        <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-indigo-200/40 rounded-full blur-[120px]" />
-      </motion.div>
+      <div
+        className="absolute inset-0 pointer-events-none opacity-70"
+        style={{
+          background:
+            "radial-gradient(ellipse at left 28%, rgba(248, 113, 113, 0.14), transparent 42%), radial-gradient(ellipse at right 68%, rgba(99, 102, 241, 0.12), transparent 44%)",
+        }}
+      />
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="flex flex-col lg:flex-row gap-20">
           {/* LEFT COLUMN: The Problem (Sticky) */}
           <div className="lg:w-1/2 lg:h-screen lg:sticky lg:top-0 flex flex-col justify-center py-12 lg:py-0">
-            <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} className="mb-12">
+            <Motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} className="mb-12">
               <h2 className="text-5xl md:text-7xl font-bold tracking-tight text-[var(--ink-900)] mb-6">
                 {content.heading.line1} <br />
                 <span className="text-[var(--ink-500)]">{content.heading.line2}</span>
               </h2>
               <p className="text-[var(--ink-700)] text-xl max-w-md">{content.description}</p>
-            </motion.div>
+            </Motion.div>
 
             <div className="space-y-8 relative">
               {/* Connecting Line (Vertical) */}
@@ -103,7 +102,7 @@ export default function ProblemSolution({ content = defaultContent }) {
                     <h4 className={`text-xl font-semibold mb-2 transition-all duration-500 ${isActive ? "text-red-400 translate-x-2" : "text-[var(--ink-500)]"}`}>
                       <span className="flex items-center gap-2">
                         {item.problem}
-                        {isActive && <XCircle size={16} className="text-red-500 animate-pulse" />}
+                        {isActive && <XCircle size={16} className="text-red-500" />}
                       </span>
                     </h4>
                     <p

@@ -38,11 +38,11 @@ body {
 }
 
 .glass-panel {
-  @apply bg-[var(--glass-bg)] border border-[var(--glass-border)] backdrop-blur-xl shadow-2xl;
+  @apply bg-[var(--glass-bg)] border border-[var(--glass-border)] shadow-xl;
 }
 
 .glow-point {
-  box-shadow: 0 0 50px 14px rgba(99, 102, 241, 0.2);
+  box-shadow: 0 0 18px 4px rgba(99, 102, 241, 0.22);
 }
 
 @keyframes scan {

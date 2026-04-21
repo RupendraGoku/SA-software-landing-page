@@ -1,19 +1,6 @@
 import { useRef, useState } from "react";
-import { motion, useAnimationFrame, useScroll, useSpring, useTransform, useVelocity } from "framer-motion";
+import { motion as Motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { featureHighlightContent as defaultContent } from "../content/featureHighlightContent";
-
-function VelocityText({ children, className }) {
-  const { scrollY } = useScroll();
-  const scrollVelocity = useVelocity(scrollY);
-  const smoothVelocity = useSpring(scrollVelocity, { damping: 50, stiffness: 400 });
-  const skewX = useTransform(smoothVelocity, [-1000, 1000], [-5, 5]);
-
-  return (
-    <motion.div style={{ skewX }} className={className}>
-      {children}
-    </motion.div>
-  );
-}
 
 export default function FeatureHighlight({ content = defaultContent }) {
   const containerRef = useRef(null);
@@ -25,9 +12,8 @@ export default function FeatureHighlight({ content = defaultContent }) {
     offset: ["start start", "end end"],
   });
 
-  useAnimationFrame(() => {
+  useMotionValueEvent(scrollYProgress, "change", (progress) => {
     if (!features.length) return;
-    const progress = scrollYProgress.get();
     const rawIndex = Math.floor(progress * features.length);
     const nextIndex = Math.min(features.length - 1, Math.max(0, rawIndex));
 
@@ -49,8 +35,8 @@ export default function FeatureHighlight({ content = defaultContent }) {
 
               return (
                 <div key={feature.id} className="h-[40vh] flex flex-col justify-center">
-                  <VelocityText className="group">
-                    <div className="inline-flex items-center gap-3 mb-6 px-4 py-2 rounded-full border border-[var(--line)] bg-white/60 backdrop-blur-md w-fit">
+                  <div className="group">
+                    <div className="inline-flex items-center gap-3 mb-6 px-4 py-2 rounded-full border border-[var(--line)] bg-white/70 w-fit">
                       <Icon className="w-5 h-5 text-indigo-400" />
                       <span className="text-sm font-mono text-indigo-600 uppercase tracking-widest">
                         {featureLabelPrefix} 0{index + 1}
@@ -66,7 +52,7 @@ export default function FeatureHighlight({ content = defaultContent }) {
                       <div className="text-3xl font-bold text-[var(--ink-900)] font-mono">{feature.stat}</div>
                       <div className="text-xs text-[var(--ink-500)] uppercase tracking-wider">{feature.statLabel}</div>
                     </div>
-                  </VelocityText>
+                  </div>
                 </div>
               );
             })}
@@ -74,10 +60,10 @@ export default function FeatureHighlight({ content = defaultContent }) {
 
           {/* RIGHT: Sticky Visuals */}
           <div className="hidden lg:block w-1/2 sticky top-0 h-screen flex items-center justify-center p-12">
-            <div className="relative w-full h-[600px] rounded-3xl overflow-hidden border border-[var(--line)] bg-[var(--porcelain-200)] backdrop-blur-xl shadow-2xl">
+            <div className="relative w-full h-[600px] rounded-3xl overflow-hidden border border-[var(--line)] bg-[var(--porcelain-200)] shadow-xl">
               {/* Dynamic Backgrounds */}
               {features.map((feature, index) => (
-                <motion.div
+                <Motion.div
                   key={feature.id}
                   initial={{ opacity: 0 }}
                   animate={{
@@ -103,24 +89,23 @@ export default function FeatureHighlight({ content = defaultContent }) {
                     const Icon = feature.icon;
 
                     return (
-                      <motion.div
+                      <Motion.div
                         key={feature.id}
-                        initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+                        initial={{ opacity: 0, y: 20 }}
                         animate={{
                           opacity: activeFeature === index ? 1 : 0,
                           y: activeFeature === index ? 0 : 20,
-                          filter: activeFeature === index ? "blur(0px)" : "blur(10px)",
                         }}
                         transition={{ duration: 0.6, delay: 0.1 }}
                         className="absolute inset-0 p-8 flex flex-col items-center justify-center"
                       >
                         {/* Abstract Visual Representation */}
-                        <div className="relative">
-                          <div className={`w-48 h-48 rounded-full bg-gradient-to-tr ${feature.gradient} blur-[60px] animate-pulse`} />
-                          <Icon className="w-32 h-32 text-[var(--ink-900)] relative z-10 drop-shadow-2xl" strokeWidth={1} />
+                        <div className="relative flex h-48 w-48 items-center justify-center">
+                          <div className={`absolute inset-0 rounded-full bg-gradient-to-tr ${feature.gradient} opacity-30`} />
+                          <Icon className="w-32 h-32 text-[var(--ink-900)] relative z-10 drop-shadow-xl" strokeWidth={1} />
                         </div>
                         <div className="mt-12 w-full max-w-sm h-2 bg-[var(--line)] rounded-full overflow-hidden">
-                          <motion.div
+                          <Motion.div
                             initial={{ width: 0 }}
                             animate={{ width: activeFeature === index ? "100%" : "0%" }}
                             transition={{ duration: 1.5, ease: "circOut" }}
@@ -128,7 +113,7 @@ export default function FeatureHighlight({ content = defaultContent }) {
                           />
                         </div>
                         <div className="mt-4 font-mono text-xs text-[var(--ink-500)]">{processingLabel}</div>
-                      </motion.div>
+                      </Motion.div>
                     );
                   })}
                 </div>

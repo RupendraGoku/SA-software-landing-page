@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { featuredProjectsContent as defaultContent } from "../content/featuredProjectsContent";
 
@@ -9,8 +9,6 @@ export default function FeaturedProjects({ content = defaultContent }) {
   const {
     heading,
     description,
-    viewAllLabel,
-    viewAllHref,
     projectLinkLabel,
     projects,
   } = content;
@@ -37,7 +35,7 @@ export default function FeaturedProjects({ content = defaultContent }) {
       <div className="container relative z-10 mx-auto px-4 sm:px-6">
         
         {/* Header */}
-        <motion.div 
+        <Motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -55,7 +53,7 @@ export default function FeaturedProjects({ content = defaultContent }) {
           >
             {viewAllLabel} <ArrowUpRight className="group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" size={18} />
           </a> */}
-        </motion.div>
+        </Motion.div>
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8 xl:grid-cols-3">
@@ -65,7 +63,7 @@ export default function FeaturedProjects({ content = defaultContent }) {
             const showDetails = canHover ? isHovered : isTouchExpanded;
 
             return (
-              <motion.div
+              <Motion.div
                 key={project.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -84,17 +82,12 @@ export default function FeaturedProjects({ content = defaultContent }) {
               >
                 {/* Background Image (Zoom & Color Effect) */}
                 <div className="absolute inset-0 overflow-hidden">
-                  <motion.img
+                  <Motion.img
                     src={project.image}
                     alt={project.title}
-                    className="h-full w-full object-cover transition-all duration-700"
+                    className="h-full w-full object-cover transition-transform duration-500"
                     animate={{
-                      scale: canHover && isHovered ? 1.1 : 1,
-                      filter: canHover
-                        ? isHovered
-                          ? "grayscale(8%)"
-                          : "grayscale(45%)"
-                        : "grayscale(12%)",
+                      scale: canHover && isHovered ? 1.06 : 1,
                     }}
                   />
                   <div
@@ -108,7 +101,7 @@ export default function FeaturedProjects({ content = defaultContent }) {
                 <div className="absolute inset-0 flex flex-col justify-end p-5 sm:p-8">
 
                   {/* Top Badge */}
-                  <div className="absolute right-5 top-5 rounded-full border border-[var(--line)] bg-white/65 px-2.5 py-1 text-[10px] font-mono text-[var(--ink-700)] backdrop-blur-md sm:right-8 sm:top-8 sm:px-3 sm:text-xs">
+                  <div className="absolute right-5 top-5 rounded-full border border-[var(--line)] bg-white/75 px-2.5 py-1 text-[10px] font-mono text-[var(--ink-700)] sm:right-8 sm:top-8 sm:px-3 sm:text-xs">
                     {project.category}
                   </div>
 
@@ -128,7 +121,7 @@ export default function FeaturedProjects({ content = defaultContent }) {
                     </h3>
 
                     {/* Description (Hidden by default, slides up on hover) */}
-                    <motion.div
+                    <Motion.div
                       initial={false}
                       animate={{
                         height: showDetails ? "auto" : 0,
@@ -148,7 +141,7 @@ export default function FeaturedProjects({ content = defaultContent }) {
                           </span>
                         ))}
                       </div>
-                    </motion.div>
+                    </Motion.div>
 
                     {/* Link Button */}
                     <a
@@ -164,7 +157,7 @@ export default function FeaturedProjects({ content = defaultContent }) {
                     </a>
                   </div>
                 </div>
-              </motion.div>
+              </Motion.div>
             );
           })}
         </div>
