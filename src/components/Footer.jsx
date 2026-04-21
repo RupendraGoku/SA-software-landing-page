@@ -76,7 +76,7 @@ export default function Footer({ content = defaultContent }) {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-[var(--line)] flex flex-col md:flex-row items-center justify-between text-sm text-[var(--ink-500)]">
+        <div className="pt-2 border-t border-[var(--line)] flex flex-col md:flex-row items-center justify-between text-sm text-[var(--ink-500)]">
           <p>{content.bottomBar.copyright}</p>
           <div className="flex gap-6 mt-4 md:mt-0">
             <span>{content.bottomBar.note}</span>
