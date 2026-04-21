@@ -6,6 +6,6 @@ export const heroContent = {
   },
   subheading:
     "SA Softech India builds user-friendly business software that saves time with automation, lowers costs with smart workflows, and connects with the tools you already use.",
-  primaryCtaLabel: "Book Demo",
+  primaryCtaLabel: "Book  Demo",
   secondaryCtaLabel: "View Features",
 };

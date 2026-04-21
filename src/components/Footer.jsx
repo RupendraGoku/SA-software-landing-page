@@ -3,14 +3,16 @@ import { footerContent as defaultContent } from "../content/footerContent";
 export default function Footer({ content = defaultContent }) {
   return (
     <footer className="bg-[var(--porcelain-100)] border-t border-[var(--line)] pt-20 pb-10 relative overflow-hidden">
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12 mb-16">
           {/* Brand Column */}
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-2 mb-6">
-              <div className="w-8 h-8 bg-gradient-to-tr from-indigo-500 to-purple-500 rounded-lg flex items-center justify-center">
-                <div className="w-4 h-4 bg-white rounded-full" />
-              </div>
+            <div className="flex items-center gap-1 mb-2">
+              <img
+                src="/asset/sa_logo.png"
+                alt={`${content.brand.name} logo`}
+                className="w-18 h-18 object-contain ml-[-20px]"
+              />
               <span className="text-xl font-bold text-[var(--ink-900)]">{content.brand.name}</span>
             </div>
             <p className="text-[var(--ink-700)] text-sm leading-relaxed mb-1 max-w-xs">{content.brand.description}</p>

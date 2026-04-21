@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { motion as Motion, useInView } from "framer-motion";
-import { XCircle, CheckCircle2, ArrowRight } from "lucide-react";
+import { XCircle, CheckCircle2 } from "lucide-react";
 import { problemSolutionContent as defaultContent } from "../content/problemSolutionContent";
 
-const Card = ({ item, index, setDeepFocus, solutionLabelPrefix, cardCtaLabel }) => {
+const Card = ({ item, index, setDeepFocus, solutionLabelPrefix }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { margin: "-40% 0px -40% 0px" });
 
@@ -40,14 +40,6 @@ const Card = ({ item, index, setDeepFocus, solutionLabelPrefix, cardCtaLabel }) 
 
         <h3 className="text-3xl font-bold text-[var(--ink-900)] mb-4">{item.solution}</h3>
         <p className="text-[var(--ink-700)] leading-relaxed text-lg">{item.solutionDescription}</p>
-
-        <button
-          type="button"
-          className="book-demo-btn mt-8 inline-flex items-center gap-2 text-sm font-medium text-[var(--ink-700)] transition-colors group-hover:text-[var(--ink-900)]"
-        >
-          <span>{cardCtaLabel}</span>
-          <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-        </button>
       </div>
     </Motion.div>
   );
@@ -127,7 +119,6 @@ export default function ProblemSolution({ content = defaultContent }) {
                 index={i}
                 setDeepFocus={setActiveIndex}
                 solutionLabelPrefix={content.solutionLabelPrefix}
-                cardCtaLabel={content.cardCtaLabel}
               />
             ))}
           </div>

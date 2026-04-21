@@ -5,7 +5,6 @@ export const problemSolutionContent = {
   },
   description: "Manual tasks, disconnected apps, and process delays hold teams back. SA Softech India brings everything into one smart system.",
   solutionLabelPrefix: "SA Softech Solution",
-  cardCtaLabel: "Request Demo",
   painPoints: [
     {
       id: 1,
